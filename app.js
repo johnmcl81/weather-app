@@ -1,8 +1,23 @@
-const request = require('request');
+const yargs = require('yargs');
+const argv = yargs
+    .options({
+        a: {
+            demand: true,
+            alias: 'address',
+            describe: 'Address to fetch weather',
+            string: true
+        }
+    })
+    .help()
+    .alias('help', 'h')
+    .argv;
 
-request({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?address=38%20gordon%20road%20whitstable%20kent",
-    json: true
-}, (error, repsonse, body) => {
-    console.log(JSON.stringify(body, undefined, 2));
-})
+const geocode = require("./geocode/geocode.js")
+
+geocode.geocodeAddress(argv.address, (errorMessage, results) => {
+    if (errorMessage) {
+        console.log(errorMessage);
+    } else {
+        console.log(JSON.stringify(results, undefined, 2));
+    }
+});

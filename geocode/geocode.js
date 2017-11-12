@@ -9,7 +9,7 @@ var geocodeAddress = (address, callback) => {
     request( {
         url: request_url,
         json: true
-    }, (error, repsonse, body) => {
+    }, (error, response, body) => {
         if (error) {
             callback('Unable to connect to api');
         }

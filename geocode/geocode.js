@@ -13,7 +13,7 @@ var geocodeAddress = (address, callback) => {
         if (error) {
             callback('Unable to connect to api');
         }
-        else if (body.status === 'ZERO RESULTS') {
+        else if (body.status === 'ZERO_RESULTS') {
             callback('Unable to find address');
         }
         else if (body.status === 'OK') {
